@@ -3,7 +3,9 @@ import DarkMode from './components/DarkMode'
 import { Grid, GridItem, Show } from '@chakra-ui/react'
 import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
+import {useColorMode} from '@chakra-ui/react'
 const App = () => {
+  const {colorMode} = useColorMode();
   return (
     <>
       
@@ -20,7 +22,9 @@ const App = () => {
      <Show above="lg">
      <GridItem bg="green.300" area ={'aside'}>aside</GridItem>
      </Show>
-     <GridItem bg="blue.200" area={'main'}>
+     <GridItem  area={'main'}
+      color ={colorMode === 'light' ? 'blackAlpha.600' : 'whiteAlpha.600'}
+     >
       <GameGrid/>
     </GridItem>
      </Grid>
