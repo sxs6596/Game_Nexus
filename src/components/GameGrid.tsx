@@ -5,11 +5,13 @@ import { useColorMode } from '@chakra-ui/react';
 import useGames from '../hooks/useGames';
 import { SimpleGrid } from '@chakra-ui/react'
 import GameCard from './GameCard'
+import GameCardSkeleton from './GameCardSkeleton';
 const GameGrid = () => {
-    const {games, error} = useGames();
-
+    const {data:games, error, isLoading} = useGames();
+    const skeletons = [1,2,3,4,5,6]; 
   return (
       <>
+       
        {error && <div>{error}</div>}
        <SimpleGrid columns={{
           sm:1,
@@ -17,6 +19,7 @@ const GameGrid = () => {
           lg:3,
        }
        } spacing={10} padding='10px'>
+        {isLoading ? skeletons.map((skeleton)=><GameCardSkeleton key={skeleton}>{skeleton}</GameCardSkeleton>) : null}
         {games.map((game)=><GameCard key={game.id} game={game}>{game.name}</GameCard>)}
          
        </SimpleGrid>

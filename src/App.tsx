@@ -4,6 +4,7 @@ import { Grid, GridItem, Show } from '@chakra-ui/react'
 import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
 import {useColorMode} from '@chakra-ui/react'
+import GenresList from './components/GenresList';
 const App = () => {
   const {colorMode} = useColorMode();
   return (
@@ -16,14 +17,20 @@ const App = () => {
      }}
      color='blackAlpha.700'
      >
-     <GridItem bg="orange.300" area={'nav'}>
+     <GridItem area={'nav'}
+     color = {colorMode === 'light' ? 'blackAlpha.600' : 'whiteAlpha.800'}
+     >
       <NavBar/>
       </GridItem>
      <Show above="lg">
-     <GridItem bg="green.300" area ={'aside'}>aside</GridItem>
+     <GridItem  area ={'aside'}
+     color ={colorMode === 'light' ? 'blackAlpha.600' : 'whiteAlpha.800'}
+     >
+      <GenresList/>
+     </GridItem>
      </Show>
      <GridItem  area={'main'}
-      color ={colorMode === 'light' ? 'blackAlpha.600' : 'whiteAlpha.600'}
+      color ={colorMode === 'light' ? 'blackAlpha.600' : 'whiteAlpha.800'}
      >
       <GameGrid/>
     </GridItem>
