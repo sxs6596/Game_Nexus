@@ -7,12 +7,21 @@ import GameGrid from './components/GameGrid';
 import {useColorMode} from '@chakra-ui/react'
 import GenresList from './components/GenresList';
 import {Genre} from './hooks/useGenres';
+import PlatformMenu from './components/PlatformMenu';
+import {HStack} from '@chakra-ui/react'
+import SortSelector from './components/SortSelector'
 const App = () => {
   const {colorMode} = useColorMode();
   const [selectedGenre, setSelectedGenre] = useState<Genre|null>(null); 
+  const [selectedPlatform , setSelectedPlatform] = useState<string|null>(null);
+  const [selectedSort, setSelectedSort] = useState<string|null>(null);
+
+  useEffect (()=>{
+     console.log('selected platform is :',selectedPlatform); 
+  },[selectedPlatform]);
+
   return (
-    <>
-      
+    <>  
      <Grid
      templateAreas={{
       base : `"nav" "main"`, 
@@ -25,6 +34,7 @@ const App = () => {
      >
       <NavBar/>
       </GridItem>
+      {/* Aside area  */}
      <Show above="lg">
      <GridItem  area ={'aside'}
      color ={colorMode === 'light' ? 'blackAlpha.600' : 'whiteAlpha.800'}
@@ -32,10 +42,17 @@ const App = () => {
       <GenresList onSelectedGenre ={(genre: Genre)=>setSelectedGenre(genre)}/>
      </GridItem>
      </Show>
+     {/* Main Area */}
+     
      <GridItem  area={'main'}
       color ={colorMode === 'light' ? 'blackAlpha.600' : 'whiteAlpha.800'}
      >
-      <GameGrid selectedGenre = {selectedGenre}/>
+      <HStack spacing={3}>
+        <PlatformMenu onSelectedPlatform={(platform)=>setSelectedPlatform(platform)} selectedPlatform={selectedPlatform}/>
+        <SortSelector onSelectedSort={(sortOrder)=>setSelectedSort(sortOrder)} selectedSort={selectedSort}/>
+      </HStack>
+
+      <GameGrid selectedGenre = {selectedGenre} selectedPlatform={selectedPlatform} selectedSort={selectedSort}/>
     </GridItem>
      </Grid>
     </>

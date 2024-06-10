@@ -3,11 +3,8 @@ import {useState, useEffect} from 'react';
 import apiClient from '../services/api-client';
 import useData from './useData';
 import {Genre} from './useGenres';
-interface Platform { 
-    id : number, 
-    name : string, 
-    slug : string
-}
+import {Platform} from './usePlatform';
+
 export interface Game { 
     id:number, 
     name:string,
@@ -38,5 +35,14 @@ export interface Game {
 //     },[])
 //     return {games, error, isLoading};
 // }
-const useGames = (selectedGenre : Genre | null)=>useData<Game>('/games', {params:{genres:selectedGenre?.id}},[selectedGenre?.id]);
+const useGames = (selectedGenre : Genre | null, selectedPlatform : Platform | null, selectedSort : string | null)=>{
+    console.log(`selected Genre Id is ${selectedGenre?.id} and selected Platform Id is ${selectedPlatform?.id}`);
+    return (useData<Game>('/games', 
+    {params:
+        {genres:selectedGenre?.id,
+         platforms:selectedPlatform?.id, 
+         ordering:selectedSort
+        }},
+    [selectedGenre?.id, selectedPlatform?.id, selectedSort]));
+}
 export default useGames; 
