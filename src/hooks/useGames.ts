@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 
 import apiClient from '../services/api-client';
 import useData from './useData';
+import {Genre} from './useGenres';
 interface Platform { 
     id : number, 
     name : string, 
@@ -37,5 +38,5 @@ export interface Game {
 //     },[])
 //     return {games, error, isLoading};
 // }
-const useGames = ()=>useData<Game>('/games');
+const useGames = (selectedGenre : Genre | null)=>useData<Game>('/games', {params:{genres:selectedGenre?.id}},[selectedGenre?.id]);
 export default useGames; 
