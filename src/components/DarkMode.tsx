@@ -1,12 +1,16 @@
-import { Button } from '@chakra-ui/react'
-import { useColorMode } from '@chakra-ui/react'
-const DarkMode = () => {
-  const {colorMode, toggleColorMode} = useColorMode()
-  return (
-        <Button onClick={toggleColorMode} margin={3}>
-            Toggle {colorMode === 'light' ? 'dark' : 'light'}
-        </Button>
-  )
-}
+import { Button } from '@chakra-ui/react';
+import { useColorMode } from '@chakra-ui/react';
+import { MdDarkMode } from 'react-icons/md';
+import { CiDark } from 'react-icons/ci';
 
-export default DarkMode
+const DarkMode = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
+
+  return (
+    <Button onClick={toggleColorMode} margin={3} leftIcon={colorMode === 'light' ? <MdDarkMode /> : <CiDark />}>
+      {colorMode === 'light' ? 'Dark' : 'Light'} Mode
+    </Button>
+  );
+};
+
+export default DarkMode;
