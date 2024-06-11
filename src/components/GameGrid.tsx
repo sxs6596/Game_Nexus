@@ -20,7 +20,7 @@ const GameGrid = ({selectedGenre, selectedPlatform, selectedSort, searchTerm}:Pr
   return (
       <>
        
-       {error && <div>{error}</div>}
+       {error && <div>{error.message}</div>}
        <SimpleGrid columns={{
           sm:1,
           md:2,
@@ -28,7 +28,7 @@ const GameGrid = ({selectedGenre, selectedPlatform, selectedSort, searchTerm}:Pr
        }
        } spacing={10} padding='10px'>
         {isLoading ? skeletons.map((skeleton)=><GameCardSkeleton key={skeleton}></GameCardSkeleton>) : null}
-        {games.map((game)=><GameCard key={game.id} game={game}></GameCard>)}
+        {games?.results.map((game)=><GameCard key={game.id} game={game}></GameCard>)}
          
        </SimpleGrid>
       </>
