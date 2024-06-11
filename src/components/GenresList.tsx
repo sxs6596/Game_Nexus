@@ -12,7 +12,7 @@ const GenresList = ({onSelectedGenre}:Props) => {
     <>
     <Text fontSize='xl' fontWeight='bold' padding={3}>Genres</Text>
     <List spacing={3} paddingX={3}>
-    {data.map((genre)=><ListItem key={genre.id}>
+    {data?.results.map((genre)=><ListItem key={genre.id}>
        <HStack> 
          <Image src={genre.image_background} boxSize="32px" borderRadius={8}></Image>
          <Button onClick={()=>onSelectedGenre(genre)} variant='link'>{genre.name}</Button>
