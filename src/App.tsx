@@ -15,10 +15,11 @@ const App = () => {
   const [selectedGenre, setSelectedGenre] = useState<Genre|null>(null); 
   const [selectedPlatform , setSelectedPlatform] = useState<string|null>(null);
   const [selectedSort, setSelectedSort] = useState<string|null>(null);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
-  useEffect (()=>{
-     console.log('selected platform is :',selectedPlatform); 
-  },[selectedPlatform]);
+  // useEffect (()=>{
+  //    console.log('selected search is :',searchTerm); 
+  // },[searchTerm]);
 
   return (
     <>  
@@ -32,13 +33,14 @@ const App = () => {
      <GridItem area={'nav'}
      color = {colorMode === 'light' ? 'blackAlpha.600' : 'whiteAlpha.800'}
      >
-      <NavBar/>
+      <NavBar onSearch={(search)=>setSearchTerm(search)}/>
       </GridItem>
       {/* Aside area  */}
      <Show above="lg">
      <GridItem  area ={'aside'}
      color ={colorMode === 'light' ? 'blackAlpha.600' : 'whiteAlpha.800'}
      >
+      
       <GenresList onSelectedGenre ={(genre: Genre)=>setSelectedGenre(genre)}/>
      </GridItem>
      </Show>
@@ -52,7 +54,7 @@ const App = () => {
         <SortSelector onSelectedSort={(sortOrder)=>setSelectedSort(sortOrder)} selectedSort={selectedSort}/>
       </HStack>
 
-      <GameGrid selectedGenre = {selectedGenre} selectedPlatform={selectedPlatform} selectedSort={selectedSort}/>
+      <GameGrid selectedGenre = {selectedGenre} selectedPlatform={selectedPlatform} selectedSort={selectedSort} searchTerm={searchTerm}/>
     </GridItem>
      </Grid>
     </>

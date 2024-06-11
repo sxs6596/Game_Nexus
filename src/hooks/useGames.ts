@@ -35,14 +35,15 @@ export interface Game {
 //     },[])
 //     return {games, error, isLoading};
 // }
-const useGames = (selectedGenre : Genre | null, selectedPlatform : Platform | null, selectedSort : string | null)=>{
+const useGames = (selectedGenre : Genre | null, selectedPlatform : Platform | null, selectedSort : string | null, searchTerm:string | null)=>{
     console.log(`selected Genre Id is ${selectedGenre?.id} and selected Platform Id is ${selectedPlatform?.id}`);
     return (useData<Game>('/games', 
     {params:
         {genres:selectedGenre?.id,
          platforms:selectedPlatform?.id, 
-         ordering:selectedSort
+         ordering:selectedSort,
+         search:searchTerm
         }},
-    [selectedGenre?.id, selectedPlatform?.id, selectedSort]));
+    [selectedGenre?.id, selectedPlatform?.id, selectedSort, searchTerm]));
 }
 export default useGames; 

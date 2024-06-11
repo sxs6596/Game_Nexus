@@ -10,6 +10,7 @@ const GenresList = ({onSelectedGenre}:Props) => {
   const {data, error, isLoading} = useGenres();   
   return (
     <>
+    <Text fontSize='xl' fontWeight='bold' padding={3}>Genres</Text>
     <List spacing={3} paddingX={3}>
     {data.map((genre)=><ListItem key={genre.id}>
        <HStack> 
