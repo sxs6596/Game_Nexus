@@ -2,10 +2,15 @@ import React from "react";
 import { Menu, MenuButton, Button, MenuList, MenuItem } from "@chakra-ui/react";
 import { FaChevronDown } from "react-icons/fa";
 import usePlatform from '../hooks/usePlatform';
-import { Platform } from '../hooks/usePlatform';
+// import { Platform } from '../hooks/usePlatform';
 interface Props { 
     onSelectedPlatform : (platform: Platform)=>void, 
-    selectedPlatform : Platform | null
+    selectedPlatform : Platform | null // TOD0: changed from Platform to string
+}
+interface Platform { 
+  id : number, 
+  name : string, 
+  slug  : string
 }
 const PlatformMenu = ({onSelectedPlatform, selectedPlatform}:Props) => {
   const {data, error, isLoading} = usePlatform();

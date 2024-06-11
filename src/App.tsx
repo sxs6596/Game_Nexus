@@ -10,10 +10,11 @@ import {Genre} from './hooks/useGenres';
 import PlatformMenu from './components/PlatformMenu';
 import {HStack} from '@chakra-ui/react'
 import SortSelector from './components/SortSelector'
+import {Platform} from './hooks/usePlatform'
 const App = () => {
   const {colorMode} = useColorMode();
   const [selectedGenre, setSelectedGenre] = useState<Genre|null>(null); 
-  const [selectedPlatform , setSelectedPlatform] = useState<string|null>(null);
+  const [selectedPlatform , setSelectedPlatform] = useState<Platform|null>(null);
   const [selectedSort, setSelectedSort] = useState<string|null>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
 
